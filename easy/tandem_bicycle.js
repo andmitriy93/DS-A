@@ -29,7 +29,7 @@ otherwise it should return the minimum total speed.
 
 */
 
-// Time Complexity O(nlogn) / Space Complexity O(n)
+// Time Complexity O(nlogn) / Space Complexity O(1)
 function tandemBicycle(redShirtSpeeds, blueShirtSpeeds, fastest) {
 	redShirtSpeeds.sort((a, b) => a - b)	
 	blueShirtSpeeds.sort((a, b) => a - b)
