@@ -17,6 +17,7 @@ Output:
 '9A4A2B4C2D'
 */
 
+// Time O(n^2) / Space O(n)
 function runLengthEncoding(string) {
   let letterCounter = 0;
   let encodingString = '';
@@ -31,4 +32,24 @@ function runLengthEncoding(string) {
     }
   }
   return encodingString
+}
+
+//Time O(n) / Space O(n)
+function runLengthEncoding(string) {
+	const resultString = [];
+	let letterCounter = 1;
+	
+	for (let idx = 1; idx < string.length; idx++) {
+		if (string[idx] !== string[idx - 1] || letterCounter === 9) {
+			resultString.push(letterCounter.toString())
+			resultString.push(string[idx - 1])
+			letterCounter = 0
+		}
+		letterCounter++
+	}
+
+  // Handle the last run.
+	resultString.push(letterCounter.toString());
+	resultString.push(string[string.length - 1])
+	return resultString.join('')
 }
