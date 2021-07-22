@@ -35,13 +35,27 @@ function threeNumberSum(array, targetSum) {
 }
 
 // Time O(n^2) / Space O(n)
+// Formula: currentSum = currentNumber + L + R
 function threeNumberSum(array, targetSum) {
   array.sort((a, b) => a - b)
-  const triplet = [];
+  const triplets = [];
 
-  
-  
-  
-  
-  
+	for (let idx = 0; idx < array.length - 2; idx++) {
+		let left = idx + 1;
+		let right = array.length - 1;
+
+		while (left < right) {
+			const currentSum = array[idx] + array[left] + array[right]
+			if (currentSum === targetSUm) {
+				triplets.push([array[idx], array[left], array[right]])
+				left++;
+				right--;
+			} else if (currentSum < targetSum) {
+				left++;
+			} else if (currentSum > targetSum) {
+				right--;
+			}
+		}
+	}
+	return triplets;
 }
