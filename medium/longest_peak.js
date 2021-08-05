@@ -17,3 +17,35 @@
 
 
 */
+
+// Time O(n) / Space O(1)
+function longestPeak(array) {
+  let longestPeakLen = 0;
+  let i = 1;
+
+  while (i < array.length - 1) {
+    let isPeak = array[i - 1] < array[i] && array[i] > array[i + 1];
+    if (!isPeak) {
+      i++;
+      continue;
+    }
+
+    let leftIdx = i - 2;
+    while (leftIdx >= 0 && array[leftIdx] < array[leftIdx + 1]) {
+      leftIdx--;
+    }
+
+    let rightIdx = i + 2;
+    while (rightIdx < array.length && array[rightIdx] < array[rightIdx - 1]) {
+      rightIdx++;
+    }
+
+    let currentPeak = rightIdx - leftIdx - 1;
+    longestPeakLen = Math.max(longestPeakLen, currentPeak)
+    i = rightIdx;
+  }
+  return longestPeakLen
+}
+
+let array = [1, 2, 3, 3, 4, 0, 10, 6, 5, -1, -3, 2, 3]
+console.log(longestPeak(array))
