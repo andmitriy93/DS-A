@@ -32,6 +32,16 @@ function firstDuplicateValue(array) {
   return -1;
 }
 
+// 2 Way Time O(n) / Space O(1)
+function firstDuplicateValue(array) {
+  for (const value of array) {
+    const absValue = Math.abs(value)
+    if (array[absValue - 1] < 0) return absValue;
+    array[absValue - 1] *= -1
+  }
+
+  return -1;
+}
 
 const array = [2, 1, 5, 2, 3, 3, 4]
 console.log(firstDuplicateValue(array))
