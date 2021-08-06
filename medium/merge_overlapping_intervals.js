@@ -20,3 +20,28 @@
 
 */
 
+// Time O(nlogn) / Space O(n)
+function mergeOverlappingIntervals(array) {
+  const sortedArray = array.sort((a, b) => a[0] - b[0])
+
+  let result = [];
+  let currentInterval = sortedArray[0];
+  result.push(currentInterval)
+
+
+  for (const nextInterval of sortedArray) {
+    const [_, currentIntervalEnd] = currentInterval;
+    const [nextIntervalStart, nextIntervalEnd] = nextInterval;
+
+    if (currentIntervalEnd >= nextIntervalStart) currentInterval[1] = Math.max(currentIntervalEnd, nextIntervalEnd)
+    else {
+      currentInterval = nextInterval;
+      result.push(currentInterval)
+    }
+  }
+
+  return result;
+}
+
+let interval = [[1, 2], [3, 5], [4, 7], [6, 8], [9, 10]]
+console.log(mergeOverlappingIntervals(interval))
