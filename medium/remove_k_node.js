@@ -26,3 +26,35 @@
   0->1->2->3->4->5->7->8->9
 
 */
+
+class LinkedList {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
+}
+
+// Time O(n) / Space O(1)
+function removeKthNodeFromEnd(head, k) {
+  let first = head;
+  let second = head;
+  let counter = 1;
+
+  while (counter <= k) {
+    second = second.next
+    counter++
+  }
+
+  if (second === null) {
+    head.value = head.next.value
+    head.next = head.next.next
+    return
+  }
+
+  while (second.next !== null) {
+    first = first.next
+    second = second.next
+  }
+
+  first.next = first.next.next
+}
