@@ -10,13 +10,12 @@
       * AI (shortest path to win the game)
 
   TODO Depth First Traversal
-  TODO Breath First Traversal
+  TODO Breadth First Traversal
 
   ! Always keep tracking wich vertex you already visited
 */
-
 /*
-  TODO DFS Pesudocode Recursive
+  TODO DFS Pseudocode Recursive
     * DFS(vertex):
       *  if vertex is empty
       *    return (this is base case)
@@ -26,7 +25,29 @@
       *    if neighbor is not visited:
       *      recursively call DFS on neighbor
 
-
+  TODO DFS Pseudocode Iterative
+    * DFS-iterative(start):
+      * let S be a stack
+      * S.push(start)
+      * while S is not empty
+        * vertex = S.pop()
+        * if vertex is not labeled as discovered:
+          * visit vertex (add to result list)
+          * label vertex as discovered
+          * for each of vertex's neighbors, N do S.push(N)
+*/
+/*
+  TODO BFS Pseudocode 
+    * This function should accept a starting vertex
+    * Create a queue (you can use an array) and place the starting vertex in it
+    * Create an array to store the nodes visited
+    * Create an object to store nodes visited
+    * Mark the starting vertex as visited
+    * Loop as long as there is anything in the queue
+    * Remove the first vertex from the queue and push it into the array that stores nodes visited
+    * Loop over each vertex in the adjacency list for the vertex you are visiting
+    * If it is not inside the object that stores nodes visited, mark it as visited and enqueue that vertex
+    * Once you have finished looping, return the array of visited nodes
 */
 
 class Graph {
@@ -71,14 +92,54 @@ class Graph {
         }
       })
     })(start)
-    
+
+    return result;
+  }
+
+  depthFirstIterative(start) {
+    const stack = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+
+    visited[start] = true;
+    while (stack.length) {
+      currentVertex = stack.pop();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          stack.push(neighbor)
+        }
+      })
+    }
+
+    return result;
+  }
+
+  breadthFirst(start) {
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+
+    while (queue.length) {
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      visited[start] = true;
+      this.adjacencyList[currentVertex].forEach(neighbor => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor)
+        }
+      })
+    }
+
     return result;
   }
 }
-
-
-
-
 
 
 
