@@ -105,5 +105,7 @@ class BST {
     return false;
   }
 
-  remove(value) {}
+  remove(value, parent = null) {
+
+  }
 }
