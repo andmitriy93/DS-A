@@ -5,6 +5,7 @@ class Node {
     this.right = null;
   }
 
+  // Iteratively
   depthFirst(root) {
     if (root === null) return []
     const result = []
@@ -20,6 +21,16 @@ class Node {
     }
     
     return result
+  }
+
+  // Recursively
+  depthFirstRecursive(root) {
+    if (root === null) return []
+
+    const leftValues = this.depthFirstRecursive(root.left)
+    const rightValues = this.depthFirstRecursive(root.right)
+    
+    return [root.value, ...leftValues, ...rightValues]
   }
 }
 
