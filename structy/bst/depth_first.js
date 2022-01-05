@@ -8,18 +8,16 @@ class Node {
   // Iteratively
   depthFirst(root) {
     if (root === null) return []
-    const result = []
     const stack = [root]
-    
+    const result = []
+
     while (stack.length > 0) {
-      const currentNode = stack.pop();
+      const currentNode = stack.pop()
       result.push(currentNode.value)
 
       if (currentNode.right) stack.push(currentNode.right)
       if (currentNode.left) stack.push(currentNode.left)
-
     }
-    
     return result
   }
 
@@ -29,7 +27,7 @@ class Node {
 
     const leftValues = this.depthFirstRecursive(root.left)
     const rightValues = this.depthFirstRecursive(root.right)
-    
+
     return [root.value, ...leftValues, ...rightValues]
   }
 }
