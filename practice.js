@@ -1,5 +1,7 @@
 // Linked List, Binary Tree, Sorting
 
+const { ImportsNotUsedAsValues } = require("typescript");
+
 class LinkedList {
   constructor(value) {
     this.value = value;
@@ -156,7 +158,7 @@ function binarySearch(array, target) {
 }
 
 function helperFunction(array, target, start, end) {
-  if (start > end) return -1;
+  if (start > end) return -1; 
 
   let mid = Math.floor((start + end) / 2);
 
@@ -184,4 +186,42 @@ function depthFirst(root) {
     if (currentNode.left) stack.push(currentNode.left);
   }
   return result;
+}
+
+// breadfirst 
+
+function breadFirst(root) {
+  if (root === null) return [];
+
+  const values = [];
+  const queue = [root];
+
+  while (queue.length > 0) {
+    const current = queue.shift();
+    values.push(current.val)
+
+    if (current.left) queue.push(current.left)
+    if (current.right) queue.push(current.right)
+  }
+
+  return values
+}
+
+// Tree includes
+const treeIncludes = (root, target) => {
+  if (root === null) return false;
+
+  const queue = [root];
+  while (queue.length > 0) {
+    const current = queue.shift();
+    if (current.val === target) return true;
+    if (current.left) queue.push(current.left)
+    if (current.right) queue.push(current.right)
+  }
+
+  return false
+}
+
+const treeIncludes = (root, target) => {
+  if (root)
 }
