@@ -125,26 +125,63 @@ function mergeSort(array) {
 }
 
 function mergeHelper(leftHalf, rightHalf) {
-  let result = new Array(leftHalf.length + rightHalf.length)
+  let result = new Array(leftHalf.length + rightHalf.length);
   let k = 0;
   let j = 0;
   let i = 0;
 
   while (i < leftHalf.length && j < rightHalf.length) {
     if (leftHalf[i] <= rightHalf[j]) {
-      result[k++] = leftHalf[i++]
+      result[k++] = leftHalf[i++];
     } else {
-      result[k++] = rightHalf[j++]
+      result[k++] = rightHalf[j++];
     }
   }
 
   while (i < leftHalf.length) {
-    result[k++] = leftHalf[i++]  
+    result[k++] = leftHalf[i++];
   }
 
   while (j < rightHalf.length) {
-    result[k++] = rightHalf[j++]
+    result[k++] = rightHalf[j++];
   }
 
-  return result
+  return result;
+}
+
+// Binary Search
+
+function binarySearch(array, target) {
+  return helperFunction(array, target, 0, array.length - 1);
+}
+
+function helperFunction(array, target, start, end) {
+  if (start > end) return -1;
+
+  let mid = Math.floor((start + end) / 2);
+
+  if (target > array[mid]) {
+    helperFunction(array, target, mid + 1, end);
+  } else if (target < array[mid]) {
+    helperFunction(array, target, mid - 1, start);
+  } else {
+    return mid;
+  }
+}
+
+// Depth first
+// Iteratively
+function depthFirst(root) {
+  if (root === null) return [];
+  const stack = [root];
+  const result = [];
+
+  while (stack.length > 0) {
+    const currentNode = stack.pop();
+    result.push(currentNode.value);
+
+    if (currentNode.right) stack.push(currentNode.right);
+    if (currentNode.left) stack.push(currentNode.left);
+  }
+  return result;
 }
