@@ -233,3 +233,37 @@ const treeSum = (root) => {
   return root.val + treeSum(root.left) + treeSum(root.right)
 }
 
+// Binary Tree Diameter
+
+class BinaryTree {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+function binaryTreeDiameter(tree) {
+  return getTreeInfo(tree).diameter
+}
+
+function getTreeInfo(tree) {
+  if (!tree) return new TreeInfo(0, 0)
+
+  const leftInfo = getTreeInfo(tree.left)
+  const rightInfo = getTreeInfo(tree.right)
+
+  const longestPath = leftInfo.height + rightInfo.height;
+  const maxDiameterSoFar = Math.max(leftInfo.diameter, rightInfo.diameter)
+  const currentDiameter = Math.max(longestPath, maxDiameterSoFar)
+  const currentHeight = 1 + Math.max(leftInfo.height, rightInfo.height)
+
+  return new TreeInfo(currentDiameter, currentHeight)
+}
+
+class TreeInfo {
+  constructor(diameter, height) {
+    this.diameter = diameter;
+    this.height = height
+  }
+}
