@@ -40,6 +40,7 @@ class BinaryTryy {
   }
 }
 
+// Time O(n) / Space O(n)
 function findSuccessor(tree, node) {
   const inOrderTraversalOrder = getInOrderTraversalOrder(tree);
 
